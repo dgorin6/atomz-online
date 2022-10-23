@@ -1,0 +1,21 @@
+{
+  "name": "atomz3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgorin6/atomz-online.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dgorin6/atomz-online/issues"
+  },
+  "homepage": "https://github.com/dgorin6/atomz-online#readme"
+}
