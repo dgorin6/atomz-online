@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/dgorin6/atomz-online/issues"
   },
-  "homepage": "https://github.com/dgorin6/atomz-online#readme"
+  "homepage": "https://github.com/dgorin6/atomz-online#readme",
+  "dependencies": {
+    "@types/styled-components": "^5.1.26"
+  }
 }
