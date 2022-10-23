@@ -2,6 +2,7 @@ const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 
+const PORT = process.env.PORT || 5000
 const app = express();
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
@@ -130,5 +131,5 @@ if(process.env.NODE_ENV === 'production') {
     });
 }
 
-httpServer.listen(5000);
+httpServer.listen(PORT);
 
