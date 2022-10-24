@@ -1,7 +1,6 @@
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-
 const PORT = process.env.PORT || 5000
 const app = express();
 const httpServer = createServer(app);
@@ -10,6 +9,9 @@ const io = require("socket.io")(httpServer, {
       origin: "*",
       methods: ["GET", "POST"]
     }
+});
+app.get('/', function(req,res){
+  res.setHeader("content security-policy", "script-src 'self' 'unsafe-eval'; object-src 'self'")
 });
 const roomNames = new Set()
 const generateRoom = () => {
