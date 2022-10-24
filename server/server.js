@@ -3,6 +3,7 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const PORT = process.env.PORT || 5000
 const app = express();
+const helmet = require('helmet');
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: {
@@ -10,9 +11,11 @@ const io = require("socket.io")(httpServer, {
       methods: ["GET", "POST"]
     }
 });
-app.get('/', function(req,res){
-  res.setHeader("content security-policy", "script-src 'self' 'unsafe-eval'; object-src 'self'")
-});
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 const roomNames = new Set()
 const generateRoom = () => {
   let alph = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
