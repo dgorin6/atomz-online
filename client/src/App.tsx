@@ -6,7 +6,7 @@ import SocketContext from './components/socketContext';
 // export interface IJoinRoomProps {socket: any}
 export interface IGameProps {setInRoom: any}
 const { io } = require("socket.io-client");
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("https://atomz.herokuapp.com/");
 function App() {
   const [inRoom, setInRoom] = useState(false)
   useEffect(() => {
