@@ -209,9 +209,6 @@ export default function Game({setInRoom}: IGameProps){
         })
         socket.on('initGame', () => {
             setGameStart(true);
-            if(player == 2){
-                setPlayerTurn(false);
-            }
         });
     },[])
   return (

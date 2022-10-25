@@ -43,7 +43,6 @@ io.on("connection", (socket) => {
         socket.playAgain = false;
         socket.pause = false;
       }
-      console.log(socket.player);
       socket.emit('allReady', socket.room, socket.player, pause);
       return callback(true);
     } else {
@@ -55,6 +54,7 @@ io.on("connection", (socket) => {
       socket.to(socket.room).emit('resumeGame')
     }
     io.to(socket.room).emit('initGame');
+    socket.emit('setCurrPlayer', false);
   })
   socket.on('sendRoom', (room) => {
     socket.emit('roomCode', room);
