@@ -8,7 +8,7 @@ const path = require('path')
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "http://atomz.herokuapp.com",
       methods: ["GET", "POST"]
     }
 });
