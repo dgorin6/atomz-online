@@ -4,7 +4,7 @@ import GameContext from "./gameContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import SocketContext from "./socketContext";
-import { IGameProps } from "../App";
+import { IGameProps } from "./Online";
 
 const sleep = (ms:number) => new Promise(
   resolve => setTimeout(resolve, ms)

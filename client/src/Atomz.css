@@ -51,16 +51,32 @@
 h4{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-.instructions {
-  padding:.5rem;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  background-color: rgba(87, 87, 123, 0.953);
-  color: white;
-  border-radius: 1rem;
-  transition: all 0.3s ease-in-out;
+.home__buttons {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
-.instructions:hover{
-  transform: scale(1.1);
+.home__button {
+  display: flex;
+  margin: 2vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vh;
+  height: 10vh;
+  font-size: 5vh;
+  border-radius: 1rem;
+  background-image: linear-gradient(to top, #27a6cd 0%, #54c1e8 100%);
+  box-shadow: 0rem 0rem 1rem 0rem rgb(98, 205, 213);;
+  color: black;
+  transition: 0.3s ease-in-out;
+}
+
+.home__button:hover {
+  transform: scale(1.1);;
 }
 .game {
   width: 100%;
@@ -286,6 +302,19 @@ h4{
 }
 .None {
   opacity: 0;
+}
+.info__main {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  font-size: 3vw;
+  align-items: center;
+  justify-content: center;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 3vw;
+}
+.info__body {
+  width: 80vw;
 }
 @media screen and (max-width:960px) {
   .atomz_title {
