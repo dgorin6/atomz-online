@@ -12,11 +12,6 @@ const io = require("socket.io")(httpServer, {
       methods: ["GET", "POST"]
     }
 });
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
-);
 const roomNames = new Set()
 const generateRoom = () => {
   let alph = '123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
