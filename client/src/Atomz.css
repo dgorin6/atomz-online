@@ -74,8 +74,25 @@ h4{
   color: black;
   transition: 0.3s ease-in-out;
 }
-
 .home__button:hover {
+  transform: scale(1.1);;
+}
+.github__button {
+  border: none;
+  background: none;
+  display: flex;
+  margin: 2vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vh;
+  height: 10vh;
+  font-size: 10vh;
+  border-radius: 1rem;
+  color: #27a6cd;
+  transition: 0.3s ease-in-out;
+}
+.github__button:hover {
   transform: scale(1.1);;
 }
 .game {

@@ -1,4 +1,5 @@
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
             <button className="home__button" onClick = {() => {window.location.href = "/info"}}>How to Play</button>
             <button className = 'home__button' onClick = {() => {window.location.href = "https://www.david-gorin.com/atomz"}}>Local</button>
             <button className="home__button" onClick = {() => {window.location.href = "/online"}}>Online</button>
+            <button className= 'github__button' onClick = {() => {window.location.href = "https://github.com/dgorin6/atomz-online"}}><FontAwesomeIcon icon={faGithub} /></button>
         </div>
     </div>
   )
