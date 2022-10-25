@@ -6,6 +6,8 @@ const app = express();
 const helmet = require('helmet');
 const path = require('path')
 const httpServer = createServer(app);
+const cors = require('cors')
+app.use(cors())
 const io = require("socket.io")(httpServer, {
     cors: {
       origin: "*",
