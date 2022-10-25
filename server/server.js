@@ -10,7 +10,7 @@ const cors = require('cors')
 app.use(cors())
 const io = require("socket.io")(httpServer, {
     cors: {
-      origin: "*",
+      origin: "http://localhost:3000",
       methods: ["GET", "POST"]
     }
 });
