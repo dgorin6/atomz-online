@@ -100,6 +100,11 @@ io.on("connection", (socket) => {
       io.to(socket.room).emit('restart');
       allSockets.forEach((s) => {
         s.playAgain = false;
+        if(s.player == 1) {
+          s.emit('setCurrPlayer', true)
+        } else {
+          s.emit('setCurrPlayer', false)
+        }
       })
       } else {
       socket.to(socket.room).emit('play again')
