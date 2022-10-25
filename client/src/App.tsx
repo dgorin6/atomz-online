@@ -6,7 +6,7 @@ import SocketContext from './components/socketContext';
 // export interface IJoinRoomProps {socket: any}
 export interface IGameProps {setInRoom: any}
 const { io } = require("socket.io-client");
-const socket = io.connect("https://atomz.herokuapp.com/");
+const socket = io.connect("http://localhost:5000");
 function App() {
   const [inRoom, setInRoom] = useState(false)
   useEffect(() => {
@@ -15,7 +15,10 @@ function App() {
       socket.emit('sendRoom', room);
       socket.emit('sendPlayer', player);
     })
-    socket.on('allReady', (pause: boolean) => {
+    socket.on('allReady', (room:string, player: number, pause: boolean) => {
+      setInRoom(true);
+      socket.emit('sendRoom', room);
+      socket.emit('sendPlayer', player);
       socket.emit('allReady', pause);
     })
   },[]);

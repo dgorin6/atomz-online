@@ -43,8 +43,8 @@ io.on("connection", (socket) => {
         socket.playAgain = false;
         socket.pause = false;
       }
-      socket.emit('joined', pause, socket.player);
-      socket.emit('allReady', pause)
+      console.log(socket.player);
+      socket.emit('allReady', socket.room, socket.player, pause);
       return callback(true);
     } else {
       return callback(false);
