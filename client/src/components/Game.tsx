@@ -1,9 +1,10 @@
 import Board from "./Board"
 import React, { useContext, useState, useEffect} from 'react'
 import GameContext from "./gameContext";
-import { IGameProps } from "../App";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import SocketContext from "./socketContext";
+import { IGameProps } from "../App";
 
 const sleep = (ms:number) => new Promise(
   resolve => setTimeout(resolve, ms)
@@ -12,7 +13,7 @@ export interface BoardProps {
     calculateChanges: (r: number, c:number) => void
   }
 
-export default function Game({socket,setInRoom}: IGameProps){
+export default function Game({setInRoom}: IGameProps){
     const[board,setBoard] = useState((Array<number>(8).fill(0).map(() => Array<number>(8).fill(0))));
     const[colors,setColors] = useState(Array<string>(8).fill('not__taken').map(() => Array<string>(8).fill('not__taken')))
     const[winner,setWinner] = useState("no__winner");
@@ -23,6 +24,7 @@ export default function Game({socket,setInRoom}: IGameProps){
     const[gameStart, setGameStart] = useState(false);
     const[roomCode, setRoomCode] = useState('');
     const[player, setPlayer] = useState(0)
+    const socket = useContext(SocketContext)
     const restartGame = () => {
         setCurrPlayer("player__1");
         setWinner("no__winner");
@@ -170,15 +172,6 @@ export default function Game({socket,setInRoom}: IGameProps){
         changeTeam();
         setPlayerTurn(true);
     });
-    socket.on('initGame', () => {
-        setGameStart(true);
-        if(player == 2){
-            setPlayerTurn(false);
-        }
-    });
-    socket.on('pauseGame', () => {
-        setGameStart(false);
-    })
     socket.on('resumeGame', () => {
         socket.emit('updateBoard', board, colors)
         socket.emit('setCurrPlayer', !isPlayerTurn)
@@ -186,21 +179,9 @@ export default function Game({socket,setInRoom}: IGameProps){
     socket.on('roomCode', (room: string) => {
         setRoomCode(room);
     });
-    socket.on('winner', (num: number) => {
-        if(num == 1) {
-            setWinner("win_player_1")
-            setWinnerName("Player 1")
-        } else {
-            setWinner("win_player_2")
-            setWinnerName("Player 2")
-        }
-    });
     socket.on('player', (player: number) => {
         setPlayer(player);
     });
-    socket.on('setCurrPlayer', (turn: boolean)=> {
-        setPlayerTurn(turn);
-    }) 
     useEffect(() => {
         socket.on('updateBoard', (board: number[][],colors: string[][]) => {
             updateBoard(board,colors);
@@ -211,6 +192,27 @@ export default function Game({socket,setInRoom}: IGameProps){
         socket.on('restart', () => {
             restartGame();
         })
+        socket.on('setCurrPlayer', (turn: boolean)=> {
+            setPlayerTurn(turn);
+        }) 
+        socket.on('winner', (num: number) => {
+            if(num == 1) {
+                setWinner("win_player_1")
+                setWinnerName("Player 1")
+            } else {
+                setWinner("win_player_2")
+                setWinnerName("Player 2")
+            }
+        });
+        socket.on('pauseGame', () => {
+            setGameStart(false);
+        })
+        socket.on('initGame', () => {
+            setGameStart(true);
+            if(player == 2){
+                setPlayerTurn(false);
+            }
+        });
     },[])
   return (
     <GameContext.Provider value = {{board,setBoard,colors,setColors,currPlayer,setCurrPlayer,winner,setWinner,winnerName,setWinnerName,disabled,setDisabled}}>

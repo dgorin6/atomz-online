@@ -101,7 +101,7 @@ h4{
   color: red;
   width: 100%;
   text-align: center;
-  font-size: 5vw;
+  font-size: 2vw;
   margin: 0;
 } 
 .move__player2 {
@@ -113,10 +113,10 @@ h4{
 }
 .not__move__player2 {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color: red;
+  color: green;
   width: 100%;
   text-align: center;
-  font-size: 5vw;
+  font-size: 2vw;
   margin: 0;
 } 
 .no__winner{
@@ -172,6 +172,7 @@ h4{
 }
 .player__1 {
   border-width: 0.001rem;
+  border-color: black;
   height: 100%;
   width: 100%;
   margin:0;
@@ -184,6 +185,7 @@ h4{
 }
 .player__2 {
   border-width: 0.001rem;
+  border-color: black;
   height: 100%;
   width: 100%;
   margin:0;
@@ -374,6 +376,7 @@ h4{
   }
   .player__1 {
     border-width: 0.001rem;
+    border-color: black;
     height: 100%;
     width: 100%;
     margin:0;
@@ -386,6 +389,7 @@ h4{
   }
   .player__2 {
     border-width: 0.001rem;
+    border-color: black;
     height: 100%;
     width: 100%;
     margin:0;

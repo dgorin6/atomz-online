@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { IJoinRoomProps } from "../App";
+import SocketContext from "./socketContext";
 
 const JoinRoomContainer = styled.div`
   width: 100%;
@@ -57,7 +57,8 @@ const CreateButton = styled.button`
   }
 `;
 
-export function JoinRoom({socket}: IJoinRoomProps) {
+export function JoinRoom() {
+  const socket = useContext(SocketContext)
   const [roomName, setRoomName] = useState("");
   const [isJoining, setJoining] = useState(false);
   const handleRoomNameChange = (e: React.ChangeEvent<any>) => {

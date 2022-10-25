@@ -43,16 +43,19 @@ io.on("connection", (socket) => {
         socket.playAgain = false;
         socket.pause = false;
       }
-      socket.emit('joined');
+      socket.emit('joined', pause);
       socket.emit('player',socket.player);
-      if(pause) {
-        socket.to(room).emit('resumeGame')
-      }
-      io.to(room).emit('initGame');
+      socket.emit('allReady', pause)
       return callback(true);
     } else {
       return callback(false);
     }
+  })
+  socket.on('allReady', (pause)=> {
+    if(pause) {
+      socket.to(socket.room).emit('resumeGame')
+    }
+    io.to(socket.room).emit('initGame');
   })
   socket.on('updateBoard',(board,colors) => {
     socket.to(socket.room).emit('updateBoard',board,colors);
