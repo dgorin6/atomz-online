@@ -43,8 +43,7 @@ io.on("connection", (socket) => {
         socket.playAgain = false;
         socket.pause = false;
       }
-      socket.emit('joined', pause);
-      socket.emit('player',socket.player);
+      socket.emit('joined', pause, socket.player);
       socket.emit('allReady', pause)
       return callback(true);
     } else {
@@ -56,6 +55,12 @@ io.on("connection", (socket) => {
       socket.to(socket.room).emit('resumeGame')
     }
     io.to(socket.room).emit('initGame');
+  })
+  socket.on('sendRoom', (room) => {
+    socket.emit('roomCode', room);
+  })
+  socket.on('sendPlayer', (player) => {
+    socket.emit('player', player);
   })
   socket.on('updateBoard',(board,colors) => {
     socket.to(socket.room).emit('updateBoard',board,colors);
@@ -77,9 +82,7 @@ io.on("connection", (socket) => {
     socket.player = 1;
     socket.playAgain = false;
     socket.pause = false;
-    socket.emit('joined');
-    socket.emit('player',socket.player);
-    io.to(roomName).emit('roomCode', roomName);
+    socket.emit('joined', socket.room, socket.player);
   })
   socket.on('winner',(num) => {
     socket.to(socket.room).emit('winner', num);

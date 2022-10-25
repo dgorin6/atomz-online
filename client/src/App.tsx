@@ -10,11 +10,12 @@ const socket = io.connect("https://atomz.herokuapp.com/");
 function App() {
   const [inRoom, setInRoom] = useState(false)
   useEffect(() => {
-    socket.on('joined', () => {
+    socket.on('joined', (room: string, player: number) => {
       setInRoom(true);
+      socket.emit('sendRoom', room);
+      socket.emit('sendPlayer', player);
     })
     socket.on('allReady', (pause: boolean) => {
-      console.log('hi');
       socket.emit('allReady', pause);
     })
   },[]);
