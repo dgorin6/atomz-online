@@ -8,8 +8,7 @@ const path = require('path')
 const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: {
-      origin: "http://atomz.herokuapp.com",
-      methods: ["GET", "POST"]
+      origin: "*",
     }
 });
 const roomNames = new Set()
