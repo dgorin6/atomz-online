@@ -96,6 +96,14 @@ h4{
   text-align: center;
   font-size: 2vw;
 }
+.not__move__player1 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+  width: 100%;
+  text-align: center;
+  font-size: 5vw;
+  margin: 0;
+} 
 .move__player2 {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   color: red;
@@ -103,6 +111,14 @@ h4{
   text-align: center;
   font-size: 2vw;
 }
+.not__move__player2 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+  width: 100%;
+  text-align: center;
+  font-size: 5vw;
+  margin: 0;
+} 
 .no__winner{
   opacity: 0;
   width: 100%;
@@ -180,8 +196,8 @@ h4{
 }
 .not__taken {
   background-color: aliceblue;
-  border-radius: 0;
   border-width: 0.001rem;
+  border-color: black;
   height: 100%;
   width: 100%;
   margin:0;
