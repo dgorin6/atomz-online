@@ -9,6 +9,7 @@ const httpServer = createServer(app);
 const io = require("socket.io")(httpServer, {
     cors: {
       origin: "*",
+      methods: ["GET", "POST"]
     }
 });
 const roomNames = new Set()
