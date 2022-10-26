@@ -4,7 +4,7 @@ import {useState,useEffect, createContext} from 'react';
 import SocketContext from './socketContext';
 export interface IGameProps {setInRoom: any}
 const { io } = require("socket.io-client");
-const socket = io.connect("http://localhost:3000/");//https://atomz.herokuapp.com/
+const socket = io.connect("https://atomz.herokuapp.com/");//http://localhost:3000/
 function Online() {
   const [inRoom, setInRoom] = useState(false)
   const ready = useState(false);
