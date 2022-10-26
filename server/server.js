@@ -71,6 +71,9 @@ io.on("connection", (socket) => {
   socket.on('setCurrPlayer', (currPlayer)=> {
     socket.to(socket.room).emit('setCurrPlayer', currPlayer);
   })
+  socket.on('setColor',(color) => {
+    socket.to(socket.room).emit('setColor', color);
+  })
   socket.on('createRoom',() => {
     let roomName = generateRoom();
     while(roomNames.has(roomName)) {

@@ -175,12 +175,19 @@ export default function Game({setInRoom}: IGameProps){
     socket.on('resumeGame', () => {
         socket.emit('updateBoard', board, colors)
         socket.emit('setCurrPlayer', !isPlayerTurn)
+        socket.emit('setColor', currPlayer);
     })
     socket.on('roomCode', (room: string) => {
         setRoomCode(room);
     });
     socket.on('player', (player: number) => {
         setPlayer(player);
+    });
+    socket.on('setColor', (color: string) => {
+        setCurrPlayer(color);
+    });
+    socket.on('initGame', () => {
+        setGameStart(true);
     });
     useEffect(() => {
         socket.on('updateBoard', (board: number[][],colors: string[][]) => {
@@ -207,9 +214,6 @@ export default function Game({setInRoom}: IGameProps){
         socket.on('pauseGame', () => {
             setGameStart(false);
         })
-        socket.on('initGame', () => {
-            setGameStart(true);
-        });
     },[])
   return (
     <GameContext.Provider value = {{board,setBoard,colors,setColors,currPlayer,setCurrPlayer,winner,setWinner,winnerName,setWinnerName,disabled,setDisabled}}>
