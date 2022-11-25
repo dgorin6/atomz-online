@@ -7,21 +7,33 @@ const { io } = require("socket.io-client");
 const socket = io.connect("https://atomz.herokuapp.com/");//http://localhost:3000/
 function Online() {
   const [inRoom, setInRoom] = useState(false)
+  const [roomCode, setRoomCode] = useState('')
   const ready = useState(false);
+  socket.on('connect', () => {
+    if(roomCode != "") {
+      console.log(roomCode)
+      socket.emit('join', roomCode, (success: boolean) => {
+        if (!success) {
+          alert('Room does not exist or is full');
+        }
+      });
+    }
+  });
   useEffect(() => {
     socket.on('joined', (room: string, player: number) => {
       setInRoom(true);
+      setRoomCode(room)
       socket.emit('sendRoom', room);
       socket.emit('sendPlayer', player);
     })
     socket.on('allReady', (room:string, player: number, pause: boolean) => {
       setInRoom(true);
+      setRoomCode(room)
       socket.emit('sendRoom', room);
       socket.emit('sendPlayer', player);
       socket.emit('allReady', pause);
     })
   },[]);
-  
   return (
     <SocketContext.Provider value = {socket}>
       <div className="Atomz">
