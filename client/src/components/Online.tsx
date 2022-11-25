@@ -11,11 +11,7 @@ function Online() {
   const ready = useState(false);
   socket.on('connect', () => {
     if(roomCode != "") {
-      console.log(roomCode)
       socket.emit('join', roomCode, (success: boolean) => {
-        if (!success) {
-          alert('Room does not exist or is full');
-        }
       });
     }
   });
