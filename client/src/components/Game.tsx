@@ -68,7 +68,8 @@ export default function Game({setInRoom}: IGameProps){
         let queue1: number[][] = [];
         let queue2: number[][] = [];
         queue1.push([r,c]);
-        while((queue1.length > 0 || queue2.length > 0) && winner == "no__winner") {
+        console.log('hi');
+        while((queue1.length > 0 || queue2.length > 0) && winnerName == "None") {
             for (let i = 0; i < queue1.length; i++) {
                 let curr = queue1[i]
                 newBoard[curr[0]][curr[1]]+=1
